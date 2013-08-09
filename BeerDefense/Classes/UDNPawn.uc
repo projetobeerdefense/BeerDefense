@@ -9,6 +9,7 @@ var float IsoZDistance;                  //pitch angle of the camera
 var vector InitialLocation;
 
 //override to make player mesh visible by default
+/*
 simulated event BecomeViewTarget( PlayerController PC )
 {
    local UDNPlayerController UTPC;
@@ -27,7 +28,7 @@ simulated event BecomeViewTarget( PlayerController PC )
       }
    }
 }
-
+*/
 simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out rotator out_CamRot, out float out_FOV )
 {
    local BD_CarrocaPawn aux;

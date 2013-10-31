@@ -1,6 +1,7 @@
 class BD_IsoCameraPawn extends UTPawn;
 
 var BD_IsoCameraProperties CameraProperties;
+var actor Follow;
 
 /**********************************
            * Eventos * 
@@ -52,11 +53,13 @@ simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out
 {
 	local vector vHitLoc, vHitNorm, vEnd, vStart, vCamAltura, vFollow;
 
-	//Verifica se tem algum pawn para seguir, senão ativa a Freecam
-	if(BD_PlayerController(Controller).Car_FollowPawn == none)
-		vFollow = self.Location;
+	`log("Follow pawn="@Follow);
+
+	//Verifica se tem algum actor para seguir, senão ativa a Freecam
+	if(Follow == none)
+		vFollow = Location;
 	else
-		vFollow = BD_PlayerController(Controller).Car_FollowPawn.Location;
+		vFollow = Follow.Location;
 
 	vCamAltura = vect(0,0,0);
 
@@ -103,6 +106,12 @@ exec function CamZoomOut()
 	{
 		CameraProperties.fCamOffsetDistance += CameraProperties.fCamZoomTick;
 	}
+}
+
+//Seta qual actor a camera tem que seguir
+simulated function setFollowActor(actor setFollow)
+{
+    Follow = setFollow;
 }
 
 

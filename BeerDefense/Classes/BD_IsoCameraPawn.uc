@@ -53,8 +53,6 @@ simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out
 {
 	local vector vHitLoc, vHitNorm, vEnd, vStart, vCamAltura, vFollow;
 
-	`log("Follow pawn="@Follow);
-
 	//Verifica se tem algum actor para seguir, senão ativa a Freecam
 	if(Follow == none)
 		vFollow = Location;

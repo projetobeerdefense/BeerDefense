@@ -10,7 +10,7 @@
 // @@ Classe responsavel pela IA da Carroça
 //-----------------------------------------------------------
 
-class BD_CarrocaController extends BotController;
+class BD_CarrocaController extends BD_BotController;
 
 var int iCaminhoIndex;          // Variavel que controla qual é o destino atual Ponto
 

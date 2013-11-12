@@ -1,21 +1,21 @@
 class BD_Caminho extends Object;
 
-var private int index;
-var private array<BD_Path> Caminho;
+var private int iIndex;                     //Valor index de qual é o atual path
+var private array<BD_Path> Caminho;         //Array contendo todos os path desse caminho
 
 public function setIndex(int value)
 {
-	index = value;
+	iIndex = value;
 }
 
 public function int getIndex()
 {
-    return index;
+    return iIndex;
 }
 
 public function BD_Path getAtualPath()
 {
-	return Caminho[index];
+	return Caminho[iIndex];
 }
 
 public function setCaminho(array<BD_Path> rota)
@@ -30,7 +30,7 @@ public function int tamCaminho()
 
 public function bool ultimoPath()
 {
-	if(Caminho[index].Fimdocaminho)
+	if(Caminho[iIndex].fimdocaminho())
 		return true;
 	else
 		return false;
@@ -38,8 +38,18 @@ public function bool ultimoPath()
 
 public function BD_path proximoPath()
 {
-     index++;
-	 return Caminho[index];
+     iIndex++;
+	 return Caminho[iIndex];
+}
+
+public function toggleShowPath()
+{
+	local int i;
+	
+	for(i=0;i<Caminho.Length;i++)
+	{
+		Caminho[i].SetHidden(!Caminho[i].bHidden);
+	}
 }
 
 DefaultProperties

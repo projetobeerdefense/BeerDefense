@@ -38,10 +38,10 @@ function startRota()
     	
        foreach WorldInfo.AllNavigationPoints(class'BD_Path', pathAux)
        {
-          `log("Path"@pathAux@"Nome do Path:"@pathAux.Nome);
-       	  if(pathAux.Nome == Name("Caminho"@i))
+          `log("Path"@pathAux@"Numero do Path:"@pathAux.numCaminho());
+       	  if(pathAux.numCaminho() == i)
 		  {
-			    arrayAux.AddItem(pathAux);
+			    arrayAux.InsertItem(pathAux.posicao(),pathAux);
 		  }
 	   }
 	   
@@ -98,7 +98,7 @@ function PlayerTick(float DeltaTime)
 
 					if(proxIndexRota == -1)
 					{
-						indexRotas = self.Caminhos[indexRotas].getAtualPath().proximo;
+						indexRotas = self.Caminhos[indexRotas].getAtualPath().proximo();
 					}
 					else
 					{
@@ -126,6 +126,14 @@ function PlayerTick(float DeltaTime)
         BotSpawned = true;
         BD_Pawn(Pawn).InitialLocation = Pawn.Location;
     }
+}
+
+exec function togglePath()
+{
+	local int i;
+	
+	for(i=0;i<Caminhos.Length;i++)
+		Caminhos[i].toggleShowPath();
 }
 
 DefaultProperties

@@ -112,7 +112,6 @@ simulated function setFollowActor(actor setFollow)
     Follow = setFollow;
 }
 
-
 DefaultProperties
 {	
 	bCollideActors=false

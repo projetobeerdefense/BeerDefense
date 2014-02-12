@@ -130,19 +130,19 @@ function vector SetaSpotsPlayer(vector vSpawnLocation)
 	//Spawn e config. dos Spots
 	vSpotLocation = carFollowBot.Location;
 	vSpotlocation.X += 30;
-	aSpots[0] = Spawn(class'BotMarker',,,vSpotLocation);
+	aSpots[0] = Spawn(class'BD_BotMarker',,,vSpotLocation);
 	 
 	vSpotLocation = carFollowBot.Location;
 	vSpotLocation.X -= 30;
-	aSpots[1] = Spawn(class'BotMarker',,,vSpotLocation);
+	aSpots[1] = Spawn(class'BD_BotMarker',,,vSpotLocation);
 	 
 	vSpotLocation = carFollowBot.Location;
 	vSpotLocation.Y += 30;
-	aSpots[2] = Spawn(class'BotMarker',,,vSpotLocation);
+	aSpots[2] = Spawn(class'BD_BotMarker',,,vSpotLocation);
 	 
 	vSpotLocation = carFollowBot.Location;
 	vSpotLocation.Y -= 30;
-	aSpots[3] = Spawn(class'BotMarker',,,vSpotLocation);
+	aSpots[3] = Spawn(class'BD_BotMarker',,,vSpotLocation);
 	
 	return vSpawnLocation;
 }

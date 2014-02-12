@@ -220,7 +220,7 @@ function PlayerTick(float DeltaTime)
 
 DefaultProperties
 {
-	BotSpawned=false
+	bBotSpawned=false
 	proxIndexRota=-1
 
 }

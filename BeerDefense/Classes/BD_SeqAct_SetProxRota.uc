@@ -1,9 +1,7 @@
-class BD_SeqAct_SetProxRota extends SequenceAction
-	HideCategories(SequenceAction)
-	HideCategories(SequenceObject);
+class BD_SeqAct_SetProxRota extends SequenceAction;
 
-var(BeerDefense) int ProxRota;
-var(BeerDefense) BD_PlayerController Player;
+var() int ProxRota;
+var() BD_PlayerController Player;
 
 event Activated()
 {

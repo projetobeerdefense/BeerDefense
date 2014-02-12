@@ -1,4 +1,4 @@
-class BD_BotController extends UDKBot;
+class BD_BaseController extends UDKBot;
 
 var Actor CurrentGoal;
 var Actor TempGoal;

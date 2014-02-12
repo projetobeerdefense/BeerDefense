@@ -1,7 +1,10 @@
-class BD_IsoCameraPawn extends UTPawn;
+class BD_CarrocaPawnCamera extends UTPawn;
 
-var BD_IsoCameraProperties CameraProperties;
-var actor Follow;
+var float fCamOffsetDistance; //Distancia da camera para o jogador em unidades do Unreal
+var float fCamMinDistance, fCamMaxDistance;
+var float fCamZoomTick; //Quantidade para movimentar o zoom in/out
+var float fCamHeight; //Quão alto está a camera da pelvis
+var float fPitchAng;   //Valor do angulo desejado, em graus
 
 /**********************************
            * Eventos * 
@@ -51,22 +54,15 @@ simulated function FaceRotation(rotator NewRotation, float DeltaTime)
 //Segue a rotação do player controller
 simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out rotator out_CamRot, out float out_FOV )
 {
-	local vector vHitLoc, vHitNorm, vEnd, vStart, vCamAltura, vFollow;
-
-	//Verifica se tem algum actor para seguir, senão ativa a Freecam
-	if(Follow == none)
-		vFollow = Location;
-	else
-		vFollow = Follow.Location;
+	local vector vHitLoc, vHitNorm, vEnd, vStart, vCamAltura;
 
 	vCamAltura = vect(0,0,0);
 
-	//Calcula a Altura do Offset (baseado no Offset)
-	vCamAltura.Z = -(CameraProperties.fCamOffsetDistance / tan(90));
-	vStart = vFollow;
+	vCamAltura.Z = -(fCamOffsetDistance / tan(90));
+	vStart = Location;
 	
 	//Camera segue o player controller por tras
-	vEnd = (vFollow + vCamAltura) - (Vector(Controller.Rotation) * CameraProperties.fCamOffsetDistance);
+	vEnd = (Location + vCamAltura) - (Vector(Controller.Rotation) * fCamOffsetDistance);
 	out_CamLoc = vEnd;
 
 	//Verifica se a rota da camera esta em uma parede ou no chão
@@ -76,10 +72,14 @@ simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out
 	}
 	
 	//Função para apontar a posição da camera
-	out_CamRot=rotator((vFollow + vCamAltura) - out_CamLoc);
+	out_CamRot=rotator((Location + vCamAltura) - out_CamLoc);
 
 	//Inclinação da camera
-	out_CamRot.pitch = -CameraProperties.fPitchAng * DegToUnrRot;
+	out_CamRot.pitch = -fPitchAng * DegToUnrRot;
+
+	`log("out_CamLoc.X="@out_CamLoc.X);
+	`log("out_CamLoc.Y="@out_CamLoc.Y);
+	`log("out_CamLoc.Z="@out_CamLoc.Z);
 
 	return true;
 }
@@ -91,30 +91,28 @@ simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out
 exec function CamZoomIn()
 {
 	`Log("Zoom in");
-	if(CameraProperties.fCamOffsetDistance > CameraProperties.fCamMinDistance)
+	if(fCamOffsetDistance > fCamMinDistance)
 	{
-		CameraProperties.fCamOffsetDistance -= CameraProperties.fCamZoomTick;
+		fCamOffsetDistance -= fCamZoomTick;
 	}
 }
 
 exec function CamZoomOut()
 {
 	`Log("Zoom out");
-	if(CameraProperties.fCamOffsetDistance < CameraProperties.fCamMaxDistance)
+	if(fCamOffsetDistance < fCamMaxDistance)
 	{
-		CameraProperties.fCamOffsetDistance += CameraProperties.fCamZoomTick;
+		fCamOffsetDistance += fCamZoomTick;
 	}
-}
-
-//Seta qual actor a camera tem que seguir
-simulated function setFollowActor(actor setFollow)
-{
-    Follow = setFollow;
 }
 
 
 DefaultProperties
 {	
-	bCollideActors=false
-	CameraProperties=BD_IsoCameraProperties'BD_Principal.Archetype.BD_IsoCamProp'
+	fCamMinDistance = 100.0
+	fCamMaxDistance = 1000.0
+   	fCamOffsetDistance=500.0
+	fCamZoomTick=50.0
+
+	fPitchAng=37.5
 }

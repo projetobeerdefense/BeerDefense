@@ -153,6 +153,28 @@ function vector SetaSpotsPlayer(vector vSpawnLocation)
 
 function AtualizaSpots(vector vNewLocation)
 {
+	//Spawn e config. dos Spots
+	vSpotLocation = carFollowBot.Location;
+	vSpotlocation.X += 30;
+	aSpots[0] = Spawn(class'BD_BotMarker',,,vSpotLocation);
+	 
+	vSpotLocation = carFollowBot.Location;
+	vSpotLocation.X -= 30;
+	aSpots[1] = Spawn(class'BD_BotMarker',,,vSpotLocation);
+	 
+	vSpotLocation = carFollowBot.Location;
+	vSpotLocation.Y += 30;
+	aSpots[2] = Spawn(class'BD_BotMarker',,,vSpotLocation);
+	 
+	vSpotLocation = carFollowBot.Location;
+	vSpotLocation.Y -= 30;
+	aSpots[3] = Spawn(class'BD_BotMarker',,,vSpotLocation);
+	
+	return vSpawnLocation;
+}
+
+function AtualizaSpots(vector vNewLocation)
+{
     local vector vAtualizaLocation;
 
     vAtualizaLocation = vNewLocation;
@@ -170,6 +192,8 @@ function AtualizaSpots(vector vNewLocation)
     vAtualizaLocation.y -= 100;
     aSpots[2].SetLocation(vAtualizaLocation);
 
+function PlayerTick(float DeltaTime)
+{
     vAtualizaLocation = vNewLocation;
 	vAtualizaLocation.x -= 100;
     vAtualizaLocation.y += 100;

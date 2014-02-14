@@ -1,24 +1,26 @@
 //-----------------------------------------------------------
-// Classe "BD_CarrocaPawn" - Para o Jogo Beer Defense
-//
-// Codigo Baseado no do Livro - "Beginning iOS 3D Unreal Games Development"
-// Criado por Robert Chin
-//
-// Modificaçõoes feita para o Jogo "Beer Defense"
-// Modificado por Igor Felga
-// Criado em 11/08/2012 - 16:35
-// Revisado por Fernando Ribeiro
-// Data: 08/08/2013
+// Criado por Fernando Ribeiro
+// Criado em 20/11/2013
 //-----------------------------------------------------------
 
 //-----------------------------------------------------------
-// @@ Classe responsavel pelo Pawn da Carroça
+// @@ Classe responsavel pelo Pawn do An�o Guerreiro
 //-----------------------------------------------------------
 
-class BD_CarrocaPawn extends BD_BasePawn;
+class BD_AnaoGuerreiroPawn extends BD_MeleePawn;
 
 DefaultProperties
-{	
+{
+	//defesa basica
+	iDefesa = 20
+	//atributos basicos
+	iForca = 10
+	iAgilidade = 10
+	iConstituicao = 10
+	iSabedoria =10
+	//vida inicial
+	iMaxhealth = 200+(cons*0.7+agi*0.3+str*0.1)
+
 	Begin Object Class=SkeletalMeshComponent Name=Carroca
         SkeletalMesh=SkeletalMesh'BD_Personagens.anao.anao'
 		AnimSets(0)=AnimSet'BD_Personagens.anao.anao_Anims'

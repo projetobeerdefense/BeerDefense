@@ -30,7 +30,7 @@ public function int tamCaminho()
 
 public function bool ultimoPath()
 {
-	if(Caminho[iIndex].fimdocaminho)
+	if(Caminho[iIndex].fimdocaminho())
 		return true;
 	else
 		return false;

@@ -91,6 +91,7 @@ function SpawnBot(Vector vSpawnLocation)
     vSpotLocation = carFollowBot.Location;
     vSpotLocation.X -= 250;
     aSpots[3] = Spawn(class'BD_BotMarker',,,vSpotLocation);
+<<<<<<< HEAD
 	
 	spawns.SpawnBot(vSpawnLocation, aSpots, 0,0,0,0);
 
@@ -124,6 +125,39 @@ function SpawnBot(Vector vSpawnLocation)
 	//playerFollowCarController[3].Possess(playerFollowCarPawn[3],false);
 	//playerFollowCarController[3].CurrentGoal = self.aSpots[3];
 	//playerFollowCarPawn[3].SetPhysics(PHYS_Falling);
+=======
+
+	playerFollowCarController[0] = Spawn(class'BD_AnaoGuerreiroController',,,vSpawnLocation);
+	playerFollowCarPawn[0] = Spawn(class'BD_AnaoGuerreiroPawn',,,vSpawnLocation);
+	playerFollowCarController[0].Possess(playerFollowCarPawn[0],false);
+	playerFollowCarController[0].CurrentGoal = self.aSpots[0];
+	playerFollowCarPawn[0].SetPhysics(PHYS_Falling);
+
+	vSpawnLocation.x = carFollowBot.Location.X;
+	vSpawnLocation.y = carFollowBot.Location.Y + 150;
+
+	playerFollowCarController[1] = Spawn(class'BD_AnaoGuerreiroController',,,vSpawnLocation);
+	playerFollowCarPawn[1] = Spawn(class'BD_AnaoGuerreiroPawn',,,vSpawnLocation);
+	playerFollowCarController[1].Possess(playerFollowCarPawn[1],false);
+	playerFollowCarController[1].CurrentGoal = self.aSpots[1];
+	playerFollowCarPawn[1].SetPhysics(PHYS_Falling);
+
+	vSpawnLocation.x += 50;
+
+	playerFollowCarController[2] = Spawn(class'BD_AnaoGuerreiroController',,,vSpawnLocation);
+	playerFollowCarPawn[2] = Spawn(class'BD_AnaoGuerreiroPawn',,,vSpawnLocation);
+	playerFollowCarController[2].Possess(playerFollowCarPawn[2],false);
+	playerFollowCarController[2].CurrentGoal = self.aSpots[2];
+	playerFollowCarPawn[2].SetPhysics(PHYS_Falling);
+
+	vSpawnLocation.x += 50;
+
+	playerFollowCarController[3] = Spawn(class'BD_AnaoGuerreiroController',,,vSpawnLocation);
+	playerFollowCarPawn[3] = Spawn(class'BD_AnaoGuerreiroPawn',,,vSpawnLocation);
+	playerFollowCarController[3].Possess(playerFollowCarPawn[3],false);
+	playerFollowCarController[3].CurrentGoal = self.aSpots[3];
+	playerFollowCarPawn[3].SetPhysics(PHYS_Falling);
+>>>>>>> ff16d148c704865bbdfb9fccc2d77b5a17c37fd1
 
     //Seta true para dizer que bot foram 'spawned'
     bBotSpawned = true;
@@ -151,28 +185,6 @@ function vector SetaSpotsPlayer(vector vSpawnLocation)
 	return vSpawnLocation;
 }
 
-//function AtualizaSpots(vector vNewLocation)
-//{
-//	//Spawn e config. dos Spots
-//	vSpotLocation = carFollowBot.Location;
-//	vSpotlocation.X += 30;
-//	aSpots[0] = Spawn(class'BD_BotMarker',,,vSpotLocation);
-	 
-//	vSpotLocation = carFollowBot.Location;
-//	vSpotLocation.X -= 30;
-//	aSpots[1] = Spawn(class'BD_BotMarker',,,vSpotLocation);
-	 
-//	vSpotLocation = carFollowBot.Location;
-//	vSpotLocation.Y += 30;
-//	aSpots[2] = Spawn(class'BD_BotMarker',,,vSpotLocation);
-	 
-//	vSpotLocation = carFollowBot.Location;
-//	vSpotLocation.Y -= 30;
-//	aSpots[3] = Spawn(class'BD_BotMarker',,,vSpotLocation);
-	
-//	return vSpawnLocation;
-//}
-
 function AtualizaSpots(vector vNewLocation)
 {
     local vector vAtualizaLocation;
@@ -191,14 +203,12 @@ function AtualizaSpots(vector vNewLocation)
 	vAtualizaLocation.x += 100;
     vAtualizaLocation.y -= 100;
     aSpots[2].SetLocation(vAtualizaLocation);
+
+    vAtualizaLocation = vNewLocation;
+	vAtualizaLocation.x -= 100;
+    vAtualizaLocation.y += 100;
+    aSpots[3].SetLocation(vAtualizaLocation);
 }
-//function PlayerTick(float DeltaTime)
-//{
-//    vAtualizaLocation = vNewLocation;
-//	vAtualizaLocation.x -= 100;
-//    vAtualizaLocation.y += 100;
-//    aSpots[3].SetLocation(vAtualizaLocation);
-//}
 
 function PlayerTick(float DeltaTime)
 {
